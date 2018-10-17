@@ -1,4 +1,4 @@
-package com.igurme;
+package com.useinsider.igurme;
 
 import com.facebook.react.ReactActivity;
 
