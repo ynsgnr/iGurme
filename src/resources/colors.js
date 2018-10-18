@@ -9,6 +9,8 @@ const colors = {
   darkGreen:"rgb(65,117,5)",
   darkText:"rgb(74,74,74)",
   lightText:"rgb(159,159,159)",
+  darkText:"rgb(0,0,0)",
+  whiteText:"rgb(255,255,255)"
 }
 
 export {colors}
