@@ -51,6 +51,10 @@ import {
   AuthPage
 } from './scenes'
 
+import {
+  AuthManager
+} from  './actions'
+
 import {colors} from './resources'
 
 const TabNavigator = createBottomTabNavigator(
@@ -112,7 +116,9 @@ const RootNavigator = createStackNavigator (
 export default class App extends Component {
   render() {
     return (
-      <RootNavigator ref={navigatorRef=>this.RootNavigator=navigatorRef}/>
+      <AuthManager>
+        <RootNavigator ref={navigatorRef=>this.RootNavigator=navigatorRef}/>
+      </AuthManager>
     );
   }
 }
