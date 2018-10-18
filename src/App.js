@@ -6,6 +6,31 @@
  * @flow
  */
 
+ /*
+
+ navigationOptions:{
+   tabBarIcon:({ tintColor }) => (
+       <Icon name="newspaper" size={20} color={tintColor} solid/>
+     ),
+   tabBarOptions: {
+     showIcon: true
+   },
+ }
+ tabBarComponent: (props) =>
+ <View>
+ {(firebase.auth().currentUser!=null && firebase.auth().currentUser.isAnonymous==false) ?
+ <View style={{flexDirection:'row'}}>
+   <ScannerButton  style={{width:'15%'}}/>
+   <BottomTabBar style={{width:'70%'}} {...props}/>
+   <LogOutButton style={{width:'15%'}}/>
+ </View>
+ :
+ <BottomTabBar {...props}/>
+ }
+ </View>
+
+ */
+
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
@@ -26,6 +51,8 @@ import {
   AuthPage
 } from './scenes'
 
+import {colors} from './resources'
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
@@ -43,6 +70,25 @@ const TabNavigator = createBottomTabNavigator(
   },
   {
     initialRouteName : 'Home', //Starting screen
+    tabBarOptions: {
+      activeTintColor:colors.mainColor,
+      inactiveColor:colors.contrastDark,
+      showLabel:false,
+      showIcon:true,
+      indicatorStyle:{borderColor:'red',borderWidth:2}
+    },
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        const focusStyle = focused ? {borderBottomWidth:2,borderColor:tintColor} : {}
+        const defaultStyle = {flex:1,width:"100%",alignItems:'center',justifyContent: 'center'}
+        const s = {...focusStyle,...defaultStyle}
+        //return <Icon name={routeName} size={horizontal ? 20 : 25} color={tintColor}/>;
+        return (
+            <View style={s}><Text>{routeName}</Text></View>
+        )
+      },
+    }),
   },
 );
 
@@ -59,7 +105,7 @@ const RootNavigator = createStackNavigator (
     AuthPage: AuthPage,
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Home',
   }
 )
 
