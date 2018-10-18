@@ -11,7 +11,13 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+} from 'react-navigation';
+
 import firebase from 'react-native-firebase';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
