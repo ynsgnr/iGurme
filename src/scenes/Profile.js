@@ -25,9 +25,9 @@ class Profile extends Component<Props> {
                   <View style={{padding:'2%',width:'100%'}}>
                     <TextInput style={{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%',paddingTop:'5%',paddingBottom:'5%'}} multiline={false} onChangeText={(text)=>this.setState({age:text})} placeholder={profile.age ? profile.age : 'age'} keyboardType='numeric'/>
                   </View>
-                  <View style={{padding:'2%',width:'100%'}}>
-                    <View style={{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%',paddingTop:'5%',paddingBottom:'5%'}}>
-                      <Picker style={{padding:0}}
+                  <View style={{padding:'1%',width:'100%'}}>
+                    <View style={{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%'}}>
+                      <Picker
                         onValueChange={(itemValue)=>this.setState({gender:itemValue})}>
                         <Picker.Item label="Male" value="male" />
                         <Picker.Item label="Female" value="female" />
