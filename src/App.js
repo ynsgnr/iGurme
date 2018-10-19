@@ -20,7 +20,8 @@ import {
 } from './scenes'
 
 import {
-  AuthManager
+  AuthManager,
+  ProfileManager
 } from  './actions'
 
 import {getColor} from './resources'
@@ -90,7 +91,9 @@ export default class App extends Component {
   render() {
     return (
       <AuthManager>
-        <RootNavigator ref={navigatorRef=>this.RootNavigator=navigatorRef}/>
+        <ProfileManager>
+          <RootNavigator ref={navigatorRef=>this.RootNavigator=navigatorRef}/>
+        </ProfileManager>
       </AuthManager>
     );
   }
