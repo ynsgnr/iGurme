@@ -9,7 +9,7 @@ import {LoginBoxy, LoginSoftly} from '../components'
 class AuthPage extends Component<Props> {
 
   render() {
-    const layoutDesign = 1
+    const layoutDesign = 2
     const resizeMode = 'center'
     return (
       <ImageBackground style={{flex:1,paddingTop:'5%',width:'100%',height:'100%',position:'absolute',justifyContent:'flex-start',flexDirection:'column'}}
