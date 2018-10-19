@@ -28,7 +28,7 @@ class Categories extends Component<Props> {
         <FlatList
           style={{paddingTop:'4%'}}
           data={this.state.categories}
-          renderItem={(item) => <ListObject data={item.item}/>}
+          renderItem={(item) => <ListObject data={item.item} onPress={()=>{this.props.navigation.navigate('ListingPage',{category:item.item.key})}}/>}
         />
       </View>
     );
