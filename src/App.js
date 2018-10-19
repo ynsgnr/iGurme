@@ -1,35 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
- /*
-
- navigationOptions:{
-   tabBarIcon:({ tintColor }) => (
-       <Icon name="newspaper" size={20} color={tintColor} solid/>
-     ),
-   tabBarOptions: {
-     showIcon: true
-   },
- }
- tabBarComponent: (props) =>
- <View>
- {(firebase.auth().currentUser!=null && firebase.auth().currentUser.isAnonymous==false) ?
- <View style={{flexDirection:'row'}}>
-   <ScannerButton  style={{width:'15%'}}/>
-   <BottomTabBar style={{width:'70%'}} {...props}/>
-   <LogOutButton style={{width:'15%'}}/>
- </View>
- :
- <BottomTabBar {...props}/>
- }
- </View>
-
- */
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
@@ -55,7 +23,7 @@ import {
   AuthManager
 } from  './actions'
 
-import {colors} from './resources'
+import {getColor} from './resources'
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -75,8 +43,8 @@ const TabNavigator = createBottomTabNavigator(
   {
     initialRouteName : 'Home', //Starting screen
     tabBarOptions: {
-      activeTintColor:colors.mainColor,
-      inactiveColor:colors.contrastDark,
+      activeTintColor:getColor('mainColor'),
+      inactiveColor:getColor('contrastDark'),
       showLabel:false,
       showIcon:true,
       indicatorStyle:{borderColor:'red',borderWidth:2}
@@ -106,7 +74,12 @@ const RootNavigator = createStackNavigator (
     },
     ProductPage: ProductPage,
     ListingPage: ListingPage, //Also search page
-    AuthPage: AuthPage,
+    AuthPage:{
+      screen:AuthPage,
+      navigationOptions:{
+        header:null
+      }
+    }
   },
   {
     initialRouteName: 'Home',
