@@ -8,6 +8,13 @@ import {ProfileData,Auth} from '../actions'
 
 class Profile extends Component<Props> {
 
+  state={
+    name:'',
+    city:'',
+    age:'',
+    gender:'male',
+  }
+
   render() {
     return (
       <Auth>{(auth)=>{
@@ -28,6 +35,7 @@ class Profile extends Component<Props> {
                   <View style={{padding:'1%',width:'100%'}}>
                     <View style={{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%'}}>
                       <Picker
+                        selectedValue={this.state.gender}
                         onValueChange={(itemValue)=>this.setState({gender:itemValue})}>
                         <Picker.Item label="Male" value="male" />
                         <Picker.Item label="Female" value="female" />
