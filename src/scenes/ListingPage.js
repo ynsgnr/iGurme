@@ -33,7 +33,7 @@ class ListingPage extends Component<Props> {
               <FlatList
                 data={productsData.products[this.state.category.key]}
                 numColumns={2}
-                renderItem={(item) => <ProductObject data={item.item}/>}
+                renderItem={(item) => <ProductObject style={{width:'50%',paddingBottom:'10%',padding:'1%'}} data={item.item}/>}
               />
             }</Product>
           </View>
