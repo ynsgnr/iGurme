@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {
   createBottomTabNavigator,
@@ -21,7 +21,8 @@ import {
 
 import {
   AuthManager,
-  ProfileManager
+  ProfileManager,
+  ProductManager,
 } from  './actions'
 
 import {getColor} from './resources'
@@ -92,7 +93,9 @@ export default class App extends Component {
     return (
       <AuthManager>
         <ProfileManager>
-          <RootNavigator ref={navigatorRef=>this.RootNavigator=navigatorRef}/>
+          <ProductManager>
+            <RootNavigator ref={navigatorRef=>this.RootNavigator=navigatorRef}/>
+          </ProductManager>
         </ProfileManager>
       </AuthManager>
     );
