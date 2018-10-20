@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableHighlight, TextInput, ScrollView, Image, Dimensions} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Image, Dimensions} from 'react-native';
 
 import {getColor} from '../resources'
 
@@ -29,15 +29,18 @@ class Home extends Component<Props> {
               <View style={{paddingTop:'10%'}}>
                 <View style={{paddingTop:'5%',paddingLeft:'5%',paddingRight:'5%',flexDirection:'row',alignItems:'center',justifyContent:'space-between',}}>
                    <Text style={{color:getColor('darkText'),fontSize:25,fontWeight:'bold'}}>BEST SELLERS</Text>
-                   <Text style={{color:getColor('lightText'),fontSize:17}}>See All</Text>
+                   <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ListingPage',{category:{name:'new',products:products.bestSellers}})}}>
+                     <Text style={{color:getColor('lightText'),fontSize:17}}>See All</Text>
+                   </TouchableOpacity>
                 </View>
-                <ProductSwiper style={{height:Dimensions.get("window").height*0.35}} data={products.bestSellers}/>
+                <ProductSwiper onProductPress={(product)=>this.props.navigation.navigate('ProductPage',{data:product})} style={{height:Dimensions.get("window").height*0.35}} data={products.bestSellers}/>
                 <View style={{paddingTop:'5%',paddingLeft:'5%',paddingRight:'5%',flexDirection:'row',alignItems:'center',justifyContent:'space-between',}}>
                    <Text style={{color:getColor('darkText'),fontSize:25,fontWeight:'bold'}}>NEW</Text>
-                   <Text style={{color:getColor('lightText'),fontSize:17}}>See All</Text>
+                   <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ListingPage',{category:{name:'new',products:products.new}})}}>
+                     <Text style={{color:getColor('lightText'),fontSize:17}}>See All</Text>
+                   </TouchableOpacity>
                 </View>
-                <ProductSwiper style={{height:Dimensions.get("window").height*0.35}} data={products.new}/>
-
+                <ProductSwiper onProductPress={(product)=>this.props.navigation.navigate('ProductPage',{data:product})} style={{height:Dimensions.get("window").height*0.35}} data={products.new}/>
               </View>
             </ScrollView>
           )}

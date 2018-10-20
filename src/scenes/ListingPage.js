@@ -37,7 +37,7 @@ class ListingPage extends Component<Props> {
               renderItem={(item) => <ProductObject onProductPress={()=>this.props.navigation.navigate('ProductPage',{data:item.item})} style={{width:'50%',paddingBottom:'10%',padding:'1%'}} data={item.item}/>}
             />
           </View>
-          <TouchableOpacity onPress={()=>this.props.navigation.pop()} style={{widht:'6%',aspectRatio:1,position:'absolute',left:'4%',top:'4%'}}>
+          <TouchableOpacity onPress={()=>this.props.navigation.pop()} style={{width:'6%',aspectRatio:1,position:'absolute',left:'4%',top:'4%'}}>
             <Icon name="angle-left" color={getColor('contrast')} size={20} light/>
           </TouchableOpacity>
         </ScrollView>

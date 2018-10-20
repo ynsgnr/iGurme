@@ -8,13 +8,14 @@ class ProductObject extends Component {
 
   static defaultProps = {
     data:{},
-    textSize:1
+    textSize:1,
+    onProductPress:()=>console.log('Pressed on product')
   }
 
   render() {
       return (
         <View style={this.props.style}>
-          <TouchableOpacity onPress={this.props.onPress} style={{flexDirection:'column',alignItems:'center'}}>
+          <TouchableOpacity onPress={()=>this.props.onProductPress()} style={{flexDirection:'column',alignItems:'center'}}>
             <Image source={{uri:this.props.data.images[0]}} style={{width:'90%',aspectRatio:1}}/>
             <View style={{width:'90%',paddingTop:'1%',flexDirection:'row',justifyContent:'space-between'}}>
               <View style={{flexDirection:'column', alignItems:'flex-start'}}>
