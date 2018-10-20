@@ -74,8 +74,18 @@ const RootNavigator = createStackNavigator (
         header:null
       }
     },
-    ProductPage: ProductPage,
-    ListingPage: ListingPage, //Also search page
+    ProductPage: {
+      screen:ProductPage,
+      navigationOptions:{
+        header:null
+      }
+    },
+    ListingPage: {
+      screen:ListingPage,
+      navigationOptions:{
+        header:null
+      }
+    }, //Also search page
     AuthPage:{
       screen:AuthPage,
       navigationOptions:{
