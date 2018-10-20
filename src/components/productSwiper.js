@@ -37,7 +37,7 @@ class ProductSwiper extends Component {
     console.log(this.state);
     if(this.state.loading)return <View style={{flex:1}}><ActivityIndicator/></View>
     return (
-      <ScrollView style={[this.props.style,{flexDirection:'row'}]} horizontal showsHorizontalScrollIndicator={false} pagingEnabled>
+      <ScrollView style={[this.props.style,{flexDirection:'row'}]} horizontal showsHorizontalScrollIndicator={false}>
         {this.state.productObjects}
       </ScrollView>
     )
