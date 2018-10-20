@@ -20,11 +20,11 @@ class ListingPage extends Component<Props> {
 
   render() {
       return (
-        <ScrollView style={{width:'100%',height:'100%',paddingLeft:'3%',paddingRight:'3%'}}>
+        <ScrollView style={{width:'100%',height:'100%',paddingLeft:'3%',paddingRight:'3%',backgroundColor:getColor('white')}}>
           <View style={{width:'100%',alignItems:'center'}}>
             <Text style={{fontSize:30,fontWeight:'bold',padding:'5%'}}>{this.state.category.name.toUpperCase()}</Text>
           </View>
-          <View style={{width:'98%',flexDirection:'row',justifyContent:'space-around',borderColor:getColor('itemBackgroundLigth'),borderTopWidth:2,borderBottomWidth:2}}>
+          <View style={{width:'98%',flexDirection:'row',justifyContent:'space-around',borderColor:getColor('contrastDark'),borderTopWidth:2,borderBottomWidth:2}}>
             <Text style={{fontSize:22}}>Sort</Text>
             <Text style={{fontSize:22}}>Filter</Text>
           </View>

@@ -20,7 +20,7 @@ class Profile extends Component<Props> {
       <Auth>{(auth)=>{
           if(auth.isLogedIn){return (
             <ProfileData>{(profile)=>
-              <View style={{width:'100%', alignItems:'center', justifyContent: 'center'}}>
+              <View style={{width:'100%', height:'100%', alignItems:'center', justifyContent: 'center',backgroundColor:getColor('background')}}>
                 <View style={{width:'87%',alignItems:'center', justifyContent: 'flex-start'}}>
                   <Text style={{paddingTop:'8%',paddingBottom:'8%',color:getColor('black'),fontSize:20,fontWeight:'bold'}}>PROFILE INFO</Text>
                   <View style={{padding:'2%',width:'100%'}}>

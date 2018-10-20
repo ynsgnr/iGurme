@@ -16,7 +16,7 @@ class Cart extends Component<Props> {
           )}
           this.props.navigation.navigate('AuthPage')
           return(
-            <View style={{flex:1,width:'100%',height:'100%',alignItems:'center',justifyContent:'center'}}>
+            <View style={{flex:1,width:'100%',height:'100%',alignItems:'center',justifyContent:'center',backgroundColor:getColor('background')}}>
               <Text style={{padding:'5%'}}>Login is required for viewing cart page</Text>
               <TouchableOpacity style={{backgroundColor:getColor('mainColor'),padding:'3%',borderRadius:20}}
                 onPress={()=>this.props.navigation.navigate('AuthPage')}>

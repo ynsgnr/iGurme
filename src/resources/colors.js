@@ -4,6 +4,7 @@ const colors = {
   itemBackground:"rgb(225,225,225)",
   itemBackgroundLigth:"rgb(255,255,255)",
   black:"rgb(0,0,0)",
+  white:"rgb(255,255,255)",
   contrastDark:"rgb(238,238,238)",
   contrastLight:"rgb(196,211,217)",
   contrastGray:"rgb(223,223,223)",
