@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableHighlight, TextInput, FlatList, ActivityIndicator, ScrollView} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, FlatList, ActivityIndicator, ScrollView} from 'react-native';
 
 import {Product} from '../actions'
 
@@ -8,10 +8,12 @@ import {ProductObject} from '../components'
 
 import {getColor} from '../resources'
 
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 class ListingPage extends Component<Props> {
 
   state={
-    category:{name:''}
+    category:{name:'',products:[]}
   }
 
   componentDidMount(){
@@ -29,14 +31,15 @@ class ListingPage extends Component<Props> {
             <Text style={{fontSize:22}}>Filter</Text>
           </View>
           <View style={{paddingTop:'5%'}}>
-            <Product>{(productsData)=>
-              <FlatList
-                data={productsData.products[this.state.category.key]}
-                numColumns={2}
-                renderItem={(item) => <ProductObject style={{width:'50%',paddingBottom:'10%',padding:'1%'}} data={item.item}/>}
-              />
-            }</Product>
+            <FlatList
+              data={this.state.category.products}
+              numColumns={2}
+              renderItem={(item) => <ProductObject onProductPress={()=>this.props.navigation.navigate('ProductPage',{data:item.item})} style={{width:'50%',paddingBottom:'10%',padding:'1%'}} data={item.item}/>}
+            />
           </View>
+          <TouchableOpacity onPress={()=>this.props.navigation.pop()} style={{widht:'6%',aspectRatio:1,position:'absolute',left:'4%',top:'4%'}}>
+            <Icon name="angle-left" color={getColor('contrast')} size={20} light/>
+          </TouchableOpacity>
         </ScrollView>
       )
 
