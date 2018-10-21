@@ -11,8 +11,21 @@ class ProductManager extends Component{
     bestSellers:[],
     new:[],
     slider:[],
-    addToCart:(product)=>this.state.cart.push(product),
-    removeFromCart:(productIndex)=>this.state.cart.spice(productIndex,1)
+    addToCart:(product)=>{this.addToCart(product)},
+    removeFromCart:(product)=>{this.setState((prevState)=>{prevState.cart.spice(prevState.cart.indexOf(product),1);return prevState})},
+    buyEverything:()=>{this.setState((prevState)=>{prevState.cart=[];return prevState})}
+  }
+
+  addToCart(product){
+    this.setState((prevState)=>{
+      let index = prevState.cart.indexOf(product)
+      product['piece']=1
+      if(index<0)
+        prevState.cart.push(product)
+      else
+        prevState.cart[index]['piece']++
+      return prevState
+    })
   }
 
   componentDidMount(){
