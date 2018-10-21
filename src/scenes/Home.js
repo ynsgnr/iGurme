@@ -13,14 +13,11 @@ class Home extends Component<Props> {
     return (
       <View style={{width:'100%',height:'100%',backgroundColor:getColor('background')}}>
         <Product>{(products)=>{
-          let imageObjects=[]
-          for(i=0;i<products.slider.length;i++){
-            imageObjects.push(
-              <View key={i} style={{height:'100%',justifyContent:'center'}}>
-                <Image source={{uri:products.slider[i]}} style={{width:Dimensions.get("window").width,aspectRatio:1}}/>
-              </View>
-            )
-          }
+          const imageObjects =products.slider.map((image,index) => (
+            <View key={index} style={{height:'100%',justifyContent:'center'}}>
+              <Image source={{uri:image}} style={{width:Dimensions.get("window").width,aspectRatio:1}}/>
+            </View>
+          ))
           return (
             <ScrollView style={{backgroundColor:getColor('white')}}>
               <ScrollView style={{flexDirection:'row', height:Dimensions.get("window").height*0.3}} horizontal showsHorizontalScrollIndicator pagingEnabled>
@@ -29,7 +26,7 @@ class Home extends Component<Props> {
               <View style={{paddingTop:'10%'}}>
                 <View style={{paddingTop:'5%',paddingLeft:'5%',paddingRight:'5%',flexDirection:'row',alignItems:'center',justifyContent:'space-between',}}>
                    <Text style={{color:getColor('darkText'),fontSize:25,fontWeight:'bold'}}>BEST SELLERS</Text>
-                   <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ListingPage',{category:{name:'new',products:products.bestSellers}})}}>
+                   <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ListingPage',{category:{name:'best sellers',products:products.bestSellers}})}}>
                      <Text style={{color:getColor('lightText'),fontSize:17}}>See All</Text>
                    </TouchableOpacity>
                 </View>

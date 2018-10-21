@@ -18,15 +18,11 @@ class ProductPage extends Component<Props> {
   componentDidMount(){
     let data = this.props.navigation.getParam("data", {})
     if(data.images){
-      let images = data.images
-      let imageObjects = []
-      for(i=0;i<images.length;i++){
-        imageObjects.push(
-          <View key={i} style={{height:'100%',justifyContent:'center'}}>
-            <Image source={{uri:images[i]}} style={{width:Dimensions.get("window").width,aspectRatio:1}}/>
-          </View>
-        )
-      }
+      const imageObjects = data.images.map((image,index) => (
+        <View key={index} style={{height:'100%',justifyContent:'center'}}>
+          <Image source={{uri:image}} style={{width:Dimensions.get("window").width,aspectRatio:1}}/>
+        </View>
+      ))
       this.setState({imageObjects:imageObjects,data:data})
     }
   }
@@ -52,7 +48,7 @@ class ProductPage extends Component<Props> {
           <Icon name="times" color={getColor('contrast')} size={20} light/>
         </TouchableOpacity>
         <Product>{(products)=>
-          <TouchableOpacity onPress={()=>products.addToCart(this.state.data)} style={{width:'20%',aspectRatio:1,position:'absolute',right:'3%',top:'55%',alignItems:'center',justifyContent:'center',backgroundColor:getColor('mainColor'),borderRadius:50}}>
+          <TouchableOpacity onPress={()=>{products.addToCart(this.state.data);this.props.navigation.navigate('Cart');}} style={{width:'20%',aspectRatio:1,position:'absolute',right:'3%',top:'55%',alignItems:'center',justifyContent:'center',backgroundColor:getColor('mainColor'),borderRadius:50}}>
             <Icon name="shopping-cart" color={getColor('white')} size={30}/>
           </TouchableOpacity>
         }
@@ -71,7 +67,7 @@ class ProductPage extends Component<Props> {
         </View>
         <View style={{marginTop:'3%',padding:'6%'}}>
           <Product>{(products)=>
-            <TouchableOpacity onPress={()=>products.addToCart(this.state.data)} style={{width:'50%',height:Dimensions.get("window").height*0.07,alignItems:'center',justifyContent:'center',backgroundColor:getColor('mainColor'),borderRadius:20}}>
+            <TouchableOpacity onPress={()=>{products.addToCart(this.state.data);this.props.navigation.navigate('Cart');}} style={{width:'50%',height:Dimensions.get("window").height*0.07,alignItems:'center',justifyContent:'center',backgroundColor:getColor('mainColor'),borderRadius:20}}>
                <Text style={{color:getColor('white'),fontWeight:'bold',fontSize:18}}>BUY NOW</Text>
             </TouchableOpacity>
           }
