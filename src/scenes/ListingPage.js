@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, FlatList, ActivityIndicator, ScrollView} from 'react-native';
 
-import {Product} from '../actions'
+import {Product} from '../context'
 
 import {ProductObject} from '../components'
 

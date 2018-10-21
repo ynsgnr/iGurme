@@ -23,7 +23,7 @@ import {
   AuthManager,
   ProfileManager,
   ProductManager,
-} from  './actions'
+} from  './context'
 
 import {getColor} from './resources'
 

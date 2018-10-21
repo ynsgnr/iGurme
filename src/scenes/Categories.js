@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {ListObject} from '../components'
 
-import {Product} from '../actions'
+import {Product} from '../context'
 
 class Categories extends Component<Props> {
 

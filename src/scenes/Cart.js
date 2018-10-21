@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, ActivityIndicator} from 'react-native';
 
-import {Auth} from '../actions'
+import {Auth} from '../context'
 
 import {getColor} from '../resources'
 

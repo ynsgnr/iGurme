@@ -6,7 +6,7 @@ import {getColor} from '../resources'
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import {Product} from '../actions'
+import {Product} from '../context'
 
 class ProductPage extends Component<Props> {
 

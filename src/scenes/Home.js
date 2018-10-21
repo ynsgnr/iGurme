@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollVie
 
 import {getColor} from '../resources'
 
-import {Product} from '../actions'
+import {Product} from '../context'
 
 import {ProductSwiper} from '../components'
 

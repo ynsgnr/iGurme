@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableHighlight, TextInput, ImageBackground} from 'react-native';
 
-import {Auth} from '../actions'
+import {Auth} from '../context'
 
 import {LoginBoxy, LoginSoftly} from '../components'
 

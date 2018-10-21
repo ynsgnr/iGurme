@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput,Picker} fr
 
 import {getColor} from '../resources'
 
-import {ProfileData,Auth} from '../actions'
+import {ProfileData,Auth} from '../context'
 
 class Profile extends Component<Props> {
 
