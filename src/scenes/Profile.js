@@ -6,6 +6,8 @@ import {getColor} from '../resources'
 
 import {ProfileData,Auth} from '../context'
 
+import {LoginRequiredMessage} from '../components'
+
 class Profile extends Component<Props> {
 
   state={
@@ -54,17 +56,7 @@ class Profile extends Component<Props> {
             }</ProfileData>
           )}
           this.props.navigation.navigate('AuthPage')
-          return(
-            <View style={{flex:1,width:'100%',height:'100%',alignItems:'center',justifyContent:'center'}}>
-              <Text style={{padding:'5%'}}>Login is required for viewing profile page</Text>
-              <TouchableOpacity style={{backgroundColor:getColor('mainColor'),padding:'3%',borderRadius:20}}
-                onPress={()=>this.props.navigation.navigate('AuthPage')}>
-                <Text style={{color:getColor('whiteText'),fontWeight: 'bold',paddingLeft:'3%',paddingRight:'3%'}}>
-                  Press Here to Login
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )
+          return <LoginRequiredMessage onPress={()=>this.props.navigation.navigate('AuthPage')}/>
         }
       }
       </Auth>
