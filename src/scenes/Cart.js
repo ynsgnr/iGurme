@@ -10,10 +10,25 @@ import {NoItemMessage, LoginRequiredMessage, OrderCompletedMessage} from '../com
 
 class Cart extends Component<Props> {
 
+  state={
+    isOrderCompleted:false
+  }
+
+  buyEverything(products){
+    this.setState({isOrderCompleted:true});
+    if(this.interval)clearInterval(this.interval)
+    this.interval=setInterval(()=>{
+      this.setState({isOrderCompleted:false})
+    },10000);
+    products.buyEverything();
+  }
+
   render() {
     return (
       <Auth>{(auth)=>{
-          if(auth.isLogedIn){return (
+          if(auth.isLogedIn){
+            if(this.state.isOrderCompleted) return <OrderCompletedMessage onPress={()=>{if(this.interval)clearInterval(this.interval);this.setState({isOrderCompleted:false})}}/>
+            return (
             <Product>{(products)=>{
               if(products.cart.length==0){
                 return <NoItemMessage onPress={()=>this.props.navigation.navigate('Home')}/>
@@ -31,7 +46,7 @@ class Cart extends Component<Props> {
                       <Text style={{color:getColor('grayText'),fontSize:15}}>Subtotal</Text>
                       <Text style={{color:getColor('darkText'),fontWeight:'bold',fontSize:17}}>{price+' $'}</Text>
                     </View>
-                    <TouchableOpacity onPress={()=>products.buyEverything()} style={{borderRadius:25,width:'60%',marginTop:'2%',padding:'2%',alignItems:'center',backgroundColor:getColor('mainColor')}}>
+                    <TouchableOpacity onPress={()=>{this.buyEverything(products)}} style={{borderRadius:25,width:'60%',marginTop:'2%',padding:'2%',alignItems:'center',backgroundColor:getColor('mainColor')}}>
                       <Text style={{color:getColor('whiteText'),fontWeight:'bold',fontSize:18}}>PLACE ORDER</Text>
                     </TouchableOpacity>
                   </View>
