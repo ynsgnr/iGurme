@@ -45,7 +45,7 @@ class Profile extends Component<Props> {
                       </Picker>
                     </View>
                   </View>
-                  <TouchableOpacity onPress={()=>profile.setState({name:this.state.name,city:this.state.city})} style={{borderRadius:25,width:'100%',marginTop:'10%',padding:'5%',alignItems:'center',backgroundColor:getColor('mainColor')}}>
+                  <TouchableOpacity onPress={()=>profile.setState({name:this.state.name,city:this.state.city,age:this.state.age,gender:this.state.gender})} style={{borderRadius:25,width:'100%',marginTop:'10%',padding:'5%',alignItems:'center',backgroundColor:getColor('mainColor')}}>
                     <Text style={{color:getColor('whiteText'),fontSize:20,fontWeight:'bold'}}>SAVE CHANGES</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={()=>auth.logout()} style={{borderRadius:25,width:'100%',marginTop:'5%',padding:'5%',alignItems:'center',backgroundColor:getColor('itemBackgroundLigth'),borderColor:getColor('mainColor'),borderWidth:3}}>

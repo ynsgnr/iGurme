@@ -19,17 +19,11 @@ class ProfileManager extends Component{
   }
 
   async init(){
-    const keys = ['name','city','age','gender']
-    let data={}
-    for(i=0;i<keys.length;i++){
-      try{
-        const value = await AsyncStorage.getItem(keys[i])
-          if (value !== null) {
-            data[keys[i]]=value
-          }
-       } catch (error) {
-         console.log(error);
-       }
+    let data={
+      name:await AsyncStorage.getItem('name'),
+      city:await AsyncStorage.getItem('city'),
+      age:await AsyncStorage.getItem('age'),
+      gender:await AsyncStorage.getItem('gender'),
     }
     this.setState(data)
   }
@@ -38,9 +32,10 @@ class ProfileManager extends Component{
     const keys = Object.keys(newState)
     this.setState(newState)
     for(i=0;i<keys.length;i++){
+      let key = keys[i]
+      let object = newState[keys[i]]
       try {
-        await AsyncStorage.setItem(keys[i], newState[keys[i]])
-        this.setState(updatedState)
+        await AsyncStorage.setItem(key, object)
       } catch (error) {
         console.log(error);
       }
