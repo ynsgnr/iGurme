@@ -34,14 +34,15 @@ class Cart extends Component<Props> {
                 return <NoItemMessage onPress={()=>this.props.navigation.navigate('Home')}/>
               }
               let price=0
-              const cartItems = products.cart.map((d,i) => {price+=parseInt(d.price); return <CartObject key={i} data={d} buttons={[{text:'Delete',onPress:()=>products.removeFromCart(d)}]}/>})
+              const cartItems = products.cart.map((d,i) => {price+=parseInt(d.price)*d.piece;
+                return <CartObject style={{backgroundColor:getColor('white'),width:'100%',height:Dimensions.get("window").height*0.2,borderBottomWidth:2,borderColor:getColor('contrastDark')}} key={i} data={d} buttons={[{text:'Delete',onPress:()=>products.removeFromCart(d)}]}/>})
               return (
-                <View style={{width:'100%',height:'100%',justifyContent:'center',alignItems:'center'}}>
-                  <ScrollView style={{padding:'6%'}}>
+                <View style={{width:'100%',height:'100%',justifyContent:'center',alignItems:'center',backgroundColor:getColor('white')}}>
+                  <ScrollView style={{width:Dimensions.get('window').width,padding:'6%'}}>
                     <Text style={{fontWeight:'bold',fontSize:17,padding:'5%'}}>SHOPPING BAG</Text>
                     {cartItems}
                   </ScrollView>
-                  <View style={{position:'absolute',height:'17%',width:'100%',bottom:0,padding:'6%',backgroundColor:getColor('white'),borderTop:1,borderColor:getColor('contrastDark'),alignItems:'center'}}>
+                  <View style={{height:'17%',width:'100%',bottom:0,padding:'6%',backgroundColor:getColor('white'),borderTopWidth:2,borderColor:getColor('contrastDark'),alignItems:'center'}}>
                     <View style={{width:'100%',flexDirection:'row',justifyContent:'space-between'}}>
                       <Text style={{color:getColor('grayText'),fontSize:15}}>Subtotal</Text>
                       <Text style={{color:getColor('darkText'),fontWeight:'bold',fontSize:17}}>{price+' $'}</Text>
