@@ -6,7 +6,7 @@ import {Auth,Product} from '../context'
 
 import {getColor} from '../resources'
 
-import {NoItemMessage, LoginRequiredMessage, OrderCompletedMessage} from '../components'
+import {NoItemMessage, LoginRequiredMessage, OrderCompletedMessage, CartObject} from '../components'
 
 class Cart extends Component<Props> {
 
@@ -34,7 +34,7 @@ class Cart extends Component<Props> {
                 return <NoItemMessage onPress={()=>this.props.navigation.navigate('Home')}/>
               }
               let price=0
-              const cartItems = products.cart.map((d) => {price+=parseInt(d.price); return <Text key={d.key}>{d.title}</Text>})
+              const cartItems = products.cart.map((d,i) => {price+=parseInt(d.price); return <CartObject key={i} data={d} buttons={[{text:'Delete',onPress:()=>products.removeFromCart(d)}]}/>})
               return (
                 <View style={{width:'100%',height:'100%',justifyContent:'center',alignItems:'center'}}>
                   <ScrollView style={{padding:'6%'}}>

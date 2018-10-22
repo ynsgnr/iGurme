@@ -12,8 +12,15 @@ class ProductManager extends Component{
     new:[],
     slider:[],
     addToCart:(product)=>{this.addToCart(product)},
-    removeFromCart:(product)=>{this.setState((prevState)=>{prevState.cart.spice(prevState.cart.indexOf(product),1);return prevState})},
+    removeFromCart:(product)=>{this.removeFromCart(product)},
     buyEverything:()=>{this.setState((prevState)=>{prevState.cart=[];return prevState})}
+  }
+
+  removeFromCart(product){
+    this.setState((prevState)=>{
+      prevState.cart.splice(prevState.cart.indexOf(product),1)
+      return prevState
+    })
   }
 
   addToCart(product){
