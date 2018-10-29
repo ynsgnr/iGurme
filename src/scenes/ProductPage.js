@@ -1,12 +1,14 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions, Image, Picker} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions, Image} from 'react-native';
 
 import {getColor} from '../resources'
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {Product} from '../context'
+
+import {Picker} from '../components'
 
 class ProductPage extends Component<Props> {
 
