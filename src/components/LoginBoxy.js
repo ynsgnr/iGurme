@@ -28,10 +28,12 @@ class LoginBoxy extends Component {
             <Text style={{width:'100%',color:getColor('lightText'),fontSize:17,padding:0}}>Password</Text>
             <TextInput style={{width:'100%',borderColor:getColor('contrastLight'),borderBottomWidth:1,padding:0}} multiline={false} onChangeText={(text)=>this.setState({password:text})} secureTextEntry/>
           </View>
-          <TouchableOpacity onPress={()=>this.props.onLogin(this.state.username,this.state.password)} style={{width:'100%', marginTop:'15%',padding:'5%',alignItems:'center',borderColor:getColor('black'),borderWidth:1}}>
+          <View style={{width:'5%'}}/>
+          <TouchableOpacity onPress={()=>this.props.onLogin(this.state.username,this.state.password)} style={{width:'100%',height:'14%',alignItems:'center',justifyContent:'center',borderColor:getColor('black'),borderWidth:1}}>
             <Text style={{color:getColor('darkText'),fontSize:20}}>LOG IN</Text>
           </TouchableOpacity>
-          <View style={{marginTop:'3%',padding:'4%'}}>
+          <View style={{height:'3%'}}/>
+          <View style={{marginTop:'3%',height:'10%'}}>
             <Text style={{color:getColor('darkText')}}>Forgot password?</Text>
           </View>
         </View>

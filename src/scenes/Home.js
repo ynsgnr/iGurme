@@ -11,7 +11,7 @@ import {ProductSwiper} from '../components'
 class Home extends Component<Props> {
   render() {
     return (
-      <View style={{width:'100%',height:'100%',backgroundColor:getColor('background')}}>
+      <View style={{width:'100%',height:'100%',backgroundColor:getColor('white')}}>
         <Product>{(products)=>{
           const imageObjects =products.slider.map((image,index) => (
             <View key={index} style={{height:'100%',justifyContent:'center'}}>
@@ -20,9 +20,18 @@ class Home extends Component<Props> {
           ))
           return (
             <ScrollView style={{backgroundColor:getColor('white')}}>
-              <ScrollView style={{flexDirection:'row', height:Dimensions.get("window").height*0.3}} horizontal showsHorizontalScrollIndicator pagingEnabled>
-                {imageObjects}
-              </ScrollView>
+              <View style={{
+                shadowOffset:{width:0,height:2},
+                shadowColor: 'rgb(200,200,200)',
+                shadowOpacity:0.5,
+                shadowRadius:3,
+                elevation:3,
+                backgroundColor:getColor('white')
+              }}>
+                <ScrollView style={{flexDirection:'row', height:Dimensions.get("window").height*0.3}} horizontal showsHorizontalScrollIndicator pagingEnabled>
+                  {imageObjects}
+                </ScrollView>
+              </View>
               <View style={{paddingTop:'10%'}}>
                 <View style={{paddingTop:'5%',paddingLeft:'5%',paddingRight:'5%',flexDirection:'row',alignItems:'center',justifyContent:'space-between',}}>
                    <Text style={{color:getColor('darkText'),fontSize:25,fontWeight:'bold'}}>BEST SELLERS</Text>

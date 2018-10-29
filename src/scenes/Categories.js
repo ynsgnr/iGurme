@@ -16,7 +16,7 @@ class Categories extends Component<Props> {
     return (
       <ScrollView style={{paddingTop:'3%',paddingLeft:'3%',paddingRight:'3%',backgroundColor:getColor('background')}}>
         <Text style={{paddingTop:'15%',paddingBottom:'10%',color:getColor('black'),fontSize:35,fontWeight:'bold'}}>What are you{"\n"}looking for?</Text>
-        <View style={{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%',alignItems:'center',justifyContent:'flex-start',flexDirection:'row'}}>
+        <View style={[{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%',alignItems:'center',justifyContent:'flex-start',flexDirection:'row'},styles.shadow]}>
           <Icon style={{paddingLeft:'5%',paddingRight:'5%',paddingTop:'5%',paddingBottom:'5%'}} name="search" size={20} color={getColor('contrast')} solid/>
           <TextInput style={{width:'80%'}} placeholder='find products'/>
         </View>
@@ -33,5 +33,17 @@ class Categories extends Component<Props> {
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  shadow:{
+    shadowOffset:{width:5,height:0},
+    shadowColor: 'rgb(20,20,20)',
+    shadowOpacity:0.1,
+    shadowRadius:4,
+    elevation:1,
+  }
+});
+
 
 export {Categories}

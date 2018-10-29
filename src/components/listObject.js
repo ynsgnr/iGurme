@@ -14,7 +14,7 @@ class ListObject extends Component {
   render() {
       return (
         <View style={{paddingTop:'1.5%'}}>
-          <TouchableOpacity onPress={this.props.onPress} style={{padding:'5%',width:'100%',backgroundColor:getColor('itemBackgroundLigth'),borderRadius:15}}>
+          <TouchableOpacity onPress={this.props.onPress} style={[{padding:'5%',width:'100%',backgroundColor:getColor('itemBackgroundLigth'),borderRadius:15},styles.shadow]}>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'flex-start',padding:0}}>
               <Image source={{uri:this.props.data.image}} style={{width:'20%',aspectRatio:1}}/>
               <View style={{height:'100%',width:1,backgroundColor:getColor('contrast'),padding:0,marginLeft:'5%',marginRight:'5%'}}/>
@@ -25,5 +25,17 @@ class ListObject extends Component {
       )
     }
 }
+
+
+const styles = StyleSheet.create({
+  shadow:{
+    shadowOffset:{width:5,height:0},
+    shadowColor: 'rgb(20,20,20)',
+    shadowOpacity:0.1,
+    shadowRadius:4,
+    elevation:1,
+  }
+});
+
 
 export {ListObject}
