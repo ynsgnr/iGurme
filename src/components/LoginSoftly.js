@@ -26,10 +26,10 @@ class LoginSoftly extends Component {
           <View style={{padding:'2%',width:'100%'}}>
             <TextInput style={{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%',paddingTop:'5%',paddingBottom:'5%'}} multiline={false} onChangeText={(text)=>this.setState({password:text})} placeholder='password' secureTextEntry/>
           </View>
-          <TouchableOpacity onPress={()=>this.props.onLogin(this.state.username,this.state.password)} style={{borderRadius:25,width:'100%',marginTop:'5%',padding:'5%',alignItems:'center',backgroundColor:getColor('black')}}>
+          <TouchableOpacity onPress={()=>this.props.onLogin(this.state.username,this.state.password)} style={{borderRadius:25,width:'100%',marginTop:'5%',padding:'3%',alignItems:'center',backgroundColor:getColor('black')}}>
             <Text style={{color:getColor('whiteText'),fontSize:20,fontWeight:'bold'}}>LOG IN</Text>
           </TouchableOpacity>
-          <View style={{width:'100%',alignItems:'center',marginTop:'3%',padding:'4%'}}>
+          <View style={{width:'100%',alignItems:'center',marginTop:'3%',padding:'2%'}}>
             <Text style={{color:getColor('darkText')}}>Forgot password?</Text>
           </View>
         </View>

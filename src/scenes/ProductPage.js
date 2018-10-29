@@ -31,7 +31,7 @@ class ProductPage extends Component<Props> {
   }
 
   render() {
-    const layoutDesign = 2
+    const layoutDesign = 1
     if(layoutDesign==1)  return (
       <ScrollView style={{width:'100%',height:'100%'}}>
         <ScrollView style={{flexDirection:'row', height:Dimensions.get("window").height*0.5}} horizontal showsHorizontalScrollIndicator pagingEnabled>
@@ -42,7 +42,7 @@ class ProductPage extends Component<Props> {
             <Text style={{fontWeight:'bold',fontSize:18}}>{this.state.data.title}</Text>
             <Text style={{fontSize:12}}>{this.state.data.subTitle}</Text>
           </View>
-          <Text style={{color:getColor('mainColor'), fontWeight:'bold', fontSize:18}}>{this.state.price+'$'}</Text>
+          <Text style={{color:getColor('mainColor'), fontWeight:'bold', fontSize:18}}>{this.state.data.price+'$'}</Text>
         </View>
         <View style={{padding:'6%'}}>
           <Text>{this.state.data.desc}</Text>

@@ -67,6 +67,7 @@ class ProductManager extends Component{
           {key:'coffee',name:'Coffee',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
           {key:'accessories',name:'Accessories',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
           {key:'cups',name:'Cups',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
+          {key:'cups2',name:'Cups2',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
         ],
     new:[
       {key:'1',title:'Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
