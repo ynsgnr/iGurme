@@ -62,7 +62,7 @@ class ProductPage extends Component<Props> {
           </TouchableOpacity>
           <Product>{(products)=>
             <TouchableOpacity onPress={()=>{let p=this.state.data;products.addToCart(p);this.props.navigation.navigate('Cart');}}
-            style={{width:'20%',aspectRatio:1,position:'absolute',right:'3%',top:'55%',alignItems:'center',justifyContent:'center',backgroundColor:getColor('mainColor'),borderRadius:50,
+            style={{width:'20%',aspectRatio:1,position:'absolute',right:'3%',top:Dimensions.get("window").height*0.45,alignItems:'center',justifyContent:'center',backgroundColor:getColor('mainColor'),borderRadius:50,
             shadowOffset:{width:0,height:2},
             shadowColor: 'rgb(200,200,200)',
             shadowOpacity:0.7,

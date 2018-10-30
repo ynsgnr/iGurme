@@ -32,6 +32,7 @@ class ListingPage extends Component<Props> {
           </View>
           <View style={{paddingTop:'5%'}}>
             <FlatList
+              scrollEnabled={false}
               data={this.state.category.products}
               numColumns={2}
               renderItem={(item) => <ProductObject onProductPress={()=>this.props.navigation.navigate('ProductPage',{data:item.item})} style={{width:'50%',paddingBottom:'10%',padding:'1%'}} data={item.item}/>}
