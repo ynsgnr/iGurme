@@ -34,6 +34,7 @@ class ProfileManager extends Component{
     for(i=0;i<keys.length;i++){
       let key = keys[i]
       let object = newState[keys[i]]
+      RNInsider.setCustomAttributeWithString(keys[i],object)
       try {
         await AsyncStorage.setItem(key, object)
       } catch (error) {

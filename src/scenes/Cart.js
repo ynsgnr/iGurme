@@ -8,7 +8,7 @@ import {getColor} from '../resources'
 
 import {NoItemMessage, LoginRequiredMessage, OrderCompletedMessage, CartObject} from '../components'
 
-class Cart extends Component<Props> {
+class Cart extends Component {
 
   state={
     isOrderCompleted:false

@@ -8,7 +8,7 @@ import {ProductObject} from '../components'
 
 import {getColor} from '../resources'
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class ListingPage extends Component<Props> {
 
@@ -39,7 +39,7 @@ class ListingPage extends Component<Props> {
             />
           </View>
           <TouchableOpacity onPress={()=>this.props.navigation.pop()} style={{width:'6%',aspectRatio:1,position:'absolute',left:'4%',top:'4%'}}>
-            <Icon name="angle-left" color={getColor('contrast')} size={20} light/>
+            <Icon name="ios-arrow-back" color={getColor('contrast')} size={20} light/>
           </TouchableOpacity>
         </ScrollView>
       )

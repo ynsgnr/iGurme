@@ -8,7 +8,8 @@ import {Product} from '../context'
 
 import {ProductSwiper} from '../components'
 
-class Home extends Component<Props> {
+class Home extends Component {
+
   render() {
     return (
       <View style={{width:'100%',height:'100%',backgroundColor:getColor('white')}}>

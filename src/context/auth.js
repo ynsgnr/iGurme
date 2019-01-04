@@ -7,7 +7,7 @@ class AuthManager extends Component{
   state={
     isLogedIn : false,
     login: (username,password) => {this.setState({isLogedIn:true})},
-    logout: () => this.setState({isLogedIn:false})
+    logout: () => {this.setState({isLogedIn:false})}
   }
 
   render() {

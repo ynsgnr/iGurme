@@ -6,7 +6,7 @@ import {Auth} from '../context'
 
 import {LoginBoxy, LoginSoftly} from '../components'
 
-class AuthPage extends Component<Props> {
+class AuthPage extends Component {
 
   render() {
     const layoutDesign = 1

@@ -16,6 +16,8 @@ const colors = {
   whiteText:"rgb(255,255,255)"
 }
 
+import RNInsider from 'react-native-insider'
+
 const getColor = (color)=>{
   return colors[color]
 }

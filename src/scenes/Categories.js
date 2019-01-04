@@ -4,21 +4,25 @@ import {Platform, StyleSheet, Text, View, TouchableHighlight, TextInput, FlatLis
 
 import {getColor} from '../resources'
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {ListObject} from '../components'
 
 import {Product} from '../context'
 
-class Categories extends Component<Props> {
+class Categories extends Component {
+
+  search(text){
+    console.log('searched: '+text);
+  }
 
   render() {
     return (
       <ScrollView style={{paddingTop:'3%',paddingLeft:'3%',paddingRight:'3%',backgroundColor:getColor('background')}}>
         <Text style={{paddingTop:'15%',paddingBottom:'10%',color:getColor('black'),fontSize:35,fontWeight:'bold'}}>What are you{"\n"}looking for?</Text>
         <View style={[{backgroundColor:getColor('itemBackgroundLigth'),borderRadius:25,width:'100%',paddingLeft:'3%',alignItems:'center',justifyContent:'flex-start',flexDirection:'row'},styles.shadow]}>
-          <Icon style={{paddingLeft:'5%',paddingRight:'5%',paddingTop:'5%',paddingBottom:'5%'}} name="search" size={20} color={getColor('contrast')} solid/>
-          <TextInput style={{width:'80%'}} placeholder='find products'/>
+          <Icon style={{paddingLeft:'5%',paddingRight:'5%',paddingTop:'5%',paddingBottom:'5%'}} name="ios-search" size={20} color={getColor('contrast')} solid/>
+          <TextInput style={{width:'80%'}} placeholder='find products' onEndEditing={(t)=>this.search(t)}/>
         </View>
         <Product>{(products)=>
           <FlatList

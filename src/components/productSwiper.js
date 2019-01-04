@@ -2,8 +2,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ActivityIndicator, ScrollView, Dimensions} from 'react-native';
 
-import {getColor} from '../resources'
-
 import {ProductObject} from '../components'
 
 class ProductSwiper extends Component {

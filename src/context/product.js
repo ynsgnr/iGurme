@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 
 const ProductContext = React.createContext()
 
+import RNInsider from 'react-native-insider';
+
+import firebase from 'react-native-firebase';
+
 class ProductManager extends Component{
 
   state={
@@ -13,7 +17,22 @@ class ProductManager extends Component{
     slider:[],
     addToCart:(product)=>{this.addToCart(product)},
     removeFromCart:(product)=>{this.removeFromCart(product)},
-    buyEverything:()=>{this.setState((prevState)=>{prevState.cart=[];return prevState})}
+    buyEverything:()=>{this.buyEverything()}
+  }
+
+  buyEverything(){
+    this.state.cart.forEach((product)=>{
+      console.log(product)
+      if(product.selectedType!=undefined){
+        productSubCategory = product.types[product.selectedType].title
+      }else {
+        productSubCategory=""
+      }
+    })
+    this.setState((prevState)=>{
+      prevState.cart=[];
+      return prevState
+    })
   }
 
   removeFromCart(product){
@@ -45,48 +64,74 @@ class ProductManager extends Component{
         product['piece']=1
         prevState.cart.push(product)
       } else prevState.cart[index]['piece']++
-      console.log(prevState);
       return prevState
     })
   }
 
   componentDidMount(){
-    //Get data from somewhere, probably smoking hot firebase
-    this.setState({products:{
-      tea:[
-        {key:'1',title:'Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-        {key:'2',title:'Coffee',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-        {key:'3',title:'Cascada',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-        {key:'4',title:'Horny Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-        {key:'5',title:'Horny Coffee',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-        {key:'6',title:'Test Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      ]
-    },
-    categories:[
-          {key:'tea',name:'Tea',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
-          {key:'coffee',name:'Coffee',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
-          {key:'accessories',name:'Accessories',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
-          {key:'cups',name:'Cups',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
-          {key:'cups2',name:'Cups2',image:'https://firebasestorage.googleapis.com/v0/b/igurme-9b5a0.appspot.com/o/coffeIcon.png?alt=media&token=025a3a67-6f28-425a-85c0-d74e16c8d92e'},
-        ],
-    new:[
-      {key:'1',title:'Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'2',title:'Coffee',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'3',title:'Cascada',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'4',title:'Horny Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'5',title:'Horny Coffee',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'6',title:'Test Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-    ],
-    bestSellers:[
-      {key:'1',title:'Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'2',title:'Coffee',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'3',title:'Cascada',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'4',title:'Horny Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'5',title:'Horny Coffee',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-      {key:'6',title:'Test Tea',subTitle:'Bedirhan Quality',price:'420',images:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg'],desc:'This tea is so awesome, Bedirhan wants this app to be real just to buy this tea. So awesome that batman drinks this in breakfasts',types:[{title:'50gr',price:1},{title:'100gr',price:2},{title:'150gr',price:3}]},
-    ],
-    slider:['http://cdna1.zoeysite.com/Adzpo594RQGDpLcjBynL1z/cache=expiry:31536000/compress/http://s3.amazonaws.com/zcom-media/sites/a0iE000000KcZRpIAN/media/catalog/product/p/r/prc-belaroma-case_opt.jpg','https://www.coffeesuppliesdirect.co.uk/ekmps/shops/coffeesupplies/images/taylors-of-harrogate-french-roast-coffee-beans-case-2-x-1kg-2996-p.jpg','https://www.terbodorecoffee.co.za/wp-content/uploads/2018/08/blog.jpg','https://www.terbodorecoffee.co.za/wp-content/uploads/2018/02/Barista-Parlor.jpg','https://2.bp.blogspot.com/-OWHeqZZAv3c/WpOU0ajXRaI/AAAAAAAE6zs/vzi-VhAmD4g75_ewqJYHKEmNA2xJMPnvwCLcBGAs/s1600/Mood%2B%25281%2529.jpg']
-  })
+
+    firebase.firestore().collection('categories').get().then((catSnapshot)=>{
+      //Get categories
+      categoryList=[]
+      productsPromiseArray=[]
+      catSnapshot.forEach((doc)=>{
+        categoryList.push(doc.data())
+      })
+      this.setState({categories:categoryList})
+    })
+
+    firebase.firestore().collection('products').get().then((productsList)=>{
+
+      productsByKey={}
+      productsList.forEach((p)=>{
+        product=p.data()
+        if(productsByKey[product.key]==undefined)   productsByKey[product.key]=product
+      })
+
+      firebase.firestore().collection('new').get().then((newSnapshot)=>{
+        //Get new products
+        newProductList=[]
+        newProductKeyList=[]
+        newSnapshot.forEach((doc)=>{ newProductKeyList=doc.data() }) //There is only one
+        newListId=0
+        for(i=0;i<newProductKeyList[newListId].length;i++){
+            newProductList.push(productsByKey[newProductKeyList[newListId][i]])
+          }
+        this.setState({new:newProductList})
+      })
+
+      firebase.firestore().collection('best').get().then((bestSnapshot)=>{
+        //Get best products
+        bestProductList=[]
+        bestProductKeyList=[]
+        bestSnapshot.forEach((doc)=>{ bestProductKeyList=doc.data() }) //There is only one
+        bestListId=0
+        for(i=0;i<bestProductKeyList[bestListId].length;i++){
+          bestProductList.push(productsByKey[bestProductKeyList[bestListId][i]])
+        }
+        this.setState({bestSellers:bestProductList})
+      })
+
+      //Get products
+      products={}
+      productsList.forEach((p)=>{
+        product=p.data()
+        if(products[product.category]==undefined)products[product.category]=[]
+        products[product.category].push(product)
+      })
+      this.setState({products:products})
+    })
+
+    firebase.firestore().collection('slider').get().then((sliderSnapshot)=>{
+      sliderList=[]
+      sliderSnapshot.forEach((doc)=>{sliderList.push(doc.data())})
+      slider=[]
+      sliderListId=0
+      for(i=0;i<sliderList[0][sliderListId].length;i++){
+        slider.push(sliderList[0][sliderListId][i])
+      }
+      this.setState({slider:slider})
+      })
   }
 
   render() {
